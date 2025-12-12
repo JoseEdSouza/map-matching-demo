@@ -1,7 +1,8 @@
-
+# Links de referência para a imagem Docker utilizada
 # https://github.com/IsraelHikingMap/graphhopper-docker-image-push/blob/main/Dockerfile
 # https://github.com/IsraelHikingMap/graphhopper-docker-image-push
 
+# Exemplo de configuração via docker-compose (comentado para referência)
 #   import-map:
 #     image: israelhikingmap/graphhopper:latest
 #     container_name: import_osm
@@ -16,11 +17,15 @@
 #       - ./tools/graphhopper/config:/config
 #     entrypoint:  ["./graphhopper.sh", "-c", "/config/config.yaml"]
 
+# Definição de variáveis locais: pasta de redes e nome do arquivo OSM
 ROAD_NETWORK_DIR=networks
 FILENAME=ohare_network.osm.xml
 
+# Limpeza prévia: remove dados antigos do GraphHopper para garantir uma importação limpa
 rm -rf ./graphhopper/volumes/graphhopper_data/*
 
+# Execução do container Docker para IMPORTAÇÃO da malha
+# --rm: remove o container automaticamente após terminar (pois é um processo one-off)
 docker run --rm \
     -e JAVA_OPTS="-Xmx8g -Xms8g" \
     -e FILE="/road-network/$FILENAME" \

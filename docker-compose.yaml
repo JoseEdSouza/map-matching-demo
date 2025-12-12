@@ -1,3 +1,18 @@
+# Configuração do serviço GraphHopper
+#
+# Serviços:
+# - graphhopper: Serviço principal de roteamento e map matching.
+#   - Imagem: Usa a imagem oficial mantida pela IsraelHikingMap (israelhikingmap/graphhopper:latest).
+#   - Portas: Mapeia a porta 8989 do container para a 8989 do host (localhost:8989).
+#   - Ambiente (Environment):
+#     - JAVA_OPTS: Configura 4GB de memória heap (mín/máx) para performance.
+#     - ACTION=server: Define o modo de operação como servidor API.
+#     - CONFIG: Aponta para o arquivo de configuração interno.
+#   - Volumes:
+#     - ./graphhopper/volumes/graphhopper_data:/data: Persistência dos dados de grafo gerados.
+#     - ./graphhopper/config:/config: Mapeamento dos arquivos de configuração locais.
+#   - Entrypoint: Comando inicial que executa o script de start com a config especificada.
+
 services:
   graphhopper:
     image: israelhikingmap/graphhopper:latest
@@ -10,4 +25,4 @@ services:
     volumes:
       - ./graphhopper/volumes/graphhopper_data:/data
       - ./graphhopper/config:/config
-    entrypoint:  ["./graphhopper.sh", "-c", "/config/config.yaml"]
+    entrypoint: [ "./graphhopper.sh", "-c", "/config/config.yaml" ]
