@@ -18,6 +18,8 @@
 
 - Python 3.13 instalado.
 - [uv](https://docs.astral.sh/uv/getting-started/installation/) para gerenciar o ambiente Python.
+  > **Nota Didática:** Usamos `uv` por ser um gerenciador de pacotes extremamente rápido e moderno (escrito em Rust), substituindo o fluxo tradicional de `pip` e `virtualenv` com muito mais performance.
+
 - [Docker](https://docs.docker.com/get-started/) e Docker Compose (para subir o GraphHopper).
 - [`make`](https://www.gnu.org/software/make/) (opcional, só para facilitar os comandos do GraphHopper).
 
@@ -55,6 +57,8 @@ make run-graphhopper
 ```
 
 Depois de iniciado, o GraphHopper fica acessível em `http://localhost:8989`.
+
+> **Troubleshooting:** Se o container não subir ou der erro de porta, verifique se a porta `8989` já não está em uso por outro serviço. Você pode checar seus containers ativos com `docker ps`.
 
 ❗ Dica, se quiser configurar do zero, use o script `2_setup_graphhopper.sh`,  que já faz tudo automaticamente (importa o grafo baixado e sobe o servidor).
 
