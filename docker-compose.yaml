@@ -1,0 +1,13 @@
+services:
+  graphhopper:
+    image: israelhikingmap/graphhopper:latest
+    ports:
+      - "8989:8989"
+    environment:
+      - JAVA_OPTS=-Xmx4g -Xms4g
+      - ACTION=server
+      - CONFIG=/config/config.yml
+    volumes:
+      - ./graphhopper/volumes/graphhopper_data:/data
+      - ./graphhopper/config:/config
+    entrypoint:  ["./graphhopper.sh", "-c", "/config/config.yaml"]
