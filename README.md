@@ -4,11 +4,9 @@
 
 1) Clone: `git clone <repo> && cd map-matching-demo` ✅
 2) Instale dependências: `uv sync`
-3) (Opcional) Ative a venv: `source .venv/bin/activate`
-4) Importe o grafo: `make setup-graphhopper` (usa `networks/ohare_network.osm.xml`)
-5) Suba o GraphHopper: `make run-graphhopper` (API em `http://localhost:8989`)
-6) Abra Jupyter: `uv run jupyter lab`
-7) Execute `2_map_matching.ipynb` para rodar o map matching com os dados em `data/` 🗺️
+3) Execute `1_download_network.ipynb` para baixar/exportar a rede OSM (pule se já existir) 🌐
+4) Configure o GraphHopper: `sh 2_setup_graphhopper.sh` ⚙️
+5) Execute `3_map_matching.ipynb` para rodar o map matching com os dados em `data/` 🗺️
 
 ## Propósito
 
@@ -58,10 +56,12 @@ make run-graphhopper
 
 Depois de iniciado, o GraphHopper fica acessível em `http://localhost:8989`.
 
+❗ Dica, se quiser configurar do zero, use o script `2_setup_graphhopper.sh`,  que já faz tudo automaticamente (importa o grafo baixado e sobe o servidor).
+
 ## Notebooks
 
 1. `1_download_network.ipynb`: baixa/exporta a rede OSM para `networks/ohare_network.osm.xml` (pule se já existir).
-2. `2_map_matching.ipynb`: carrega os dados de `data/` e chama o matcher via `mmlib.graphhopper_matcher`, assumindo o GraphHopper rodando em `http://localhost:8989`.
+2. `3_map_matching.ipynb`: carrega os dados de `data/` e chama o matcher via `mmlib.graphhopper_matcher`, assumindo o GraphHopper rodando em `http://localhost:8989`.
 
 Sugestão de comando para abrir:
 
